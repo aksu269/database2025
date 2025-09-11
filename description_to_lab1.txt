@@ -1,0 +1,69 @@
+Rectangle → Entity (e.g., Airport, Flights information).
+
+Attributes inside entity box → Properties of that entity.
+
+PK → Primary Key (unique identifier).
+
+FK → Foreign Key (links to another entity).
+
+Lines with crow’s feet → Relationships between entities.
+
+||—  mandatory one
+
+|O— optional one.
+
+—|< mandatory many
+
+Entities
+Airport
+Stores details of each airport.
+Attributes: Airport_id (PK), name, country, state, city, createdAt, updatedAt.
+Related to: Flights information (as departure and arrival).
+
+Flights information
+
+Contains all details of scheduled and actual flights.
+Attributes: Flight_id (PK), departure/arrival gates, times, airline_id (FK), departure_airport_id (FK), arrival_airport_id (FK), timestamps.
+Related to: Airport, Airlines companies, Bookings.
+
+Airlines companies
+
+Information about airlines.
+Attributes: Airline_id (PK), airline_code, name, country, timestamps.
+Related to: Flights information (an airline operates many flights).
+
+Bookings
+
+Holds booking records for passengers.
+Attributes: Booking_id (PK), flight_id (FK), passenger_id (FK), status, booking_platform, ticket_price, timestamps.
+Related to: Flights, Passenger information, Boarding pass, Baggage.
+
+Boarding pass
+
+Stores data about issued boarding passes.
+Attributes: Boarding_pass_id (PK), booking_id (FK), seat, boarding_time, timestamps.
+Related to: Bookings.
+
+Baggage
+
+Information about baggage items linked to bookings.
+Attributes: Baggage_id (PK), booking_id (FK), weight, timestamps.
+Related to: Bookings, Check.
+
+Check (Baggage Check in your case)
+
+Results of baggage checks.
+Attributes: Checking_id (PK), booking_id (FK), passenger_id (FK), check_results, timestamps.
+Related to: Passenger information, Baggage.
+
+Passenger information
+
+Stores details about passengers.
+Attributes: Passenger_id (PK), first/last name, gender, date of birth, citizenship, residence, passport number, timestamps.
+Related to: Bookings, Check, Security check.
+
+Security check
+
+Records results of passenger security checks.
+Attributes: Security_check_id (PK), passenger_id (FK), check_results, timestamps.
+Related to: Passenger information.
